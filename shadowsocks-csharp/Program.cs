@@ -95,9 +95,10 @@ namespace Shadowsocks
 #endif
 #if !_CONSOLE
                 _viewController = new MenuViewController(_controller);
+                SystemEvents.SessionEnding += _viewController.Quit_Click;
 #endif
 
-            _controller.Start();
+                _controller.Start();
 
 #if !_CONSOLE
                 //Util.Utils.ReleaseMemory();
