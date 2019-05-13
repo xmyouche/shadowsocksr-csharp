@@ -1107,7 +1107,7 @@ namespace Shadowsocks.View
             {
                 Configuration config = controller.GetCurrentConfiguration();
                 string pacUrl;
-                pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword + "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
+                pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword;// + "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
                 Clipboard.SetText(pacUrl);
             }
             catch

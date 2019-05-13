@@ -226,7 +226,7 @@ namespace Shadowsocks.Controller
 
             // Get total length of INTERNET_PER_CONN_OPTIONs
             int len = 0;
-            foreach(INTERNET_PER_CONN_OPTION option in _optionlist)
+            foreach (INTERNET_PER_CONN_OPTION option in _optionlist)
             {
                 len += Marshal.SizeOf(option);
             }
@@ -544,7 +544,7 @@ namespace Shadowsocks.Controller
                             else
                             {
                                 string pacUrl;
-                                pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword + "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
+                                pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword; //+ "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
                                 RegistrySetValue(registry, "ProxyEnable", 0);
                                 RegistrySetValue(registry, "ProxyServer", "");
                                 RegistrySetValue(registry, "AutoConfigURL", pacUrl);
@@ -569,33 +569,34 @@ namespace Shadowsocks.Controller
                     }
                 }
             }
-            if (Environment.OSVersion.Version.CompareTo(win8) >= 0)
-            {
-                try
-                {
-                    if (enabled)
-                    {
-                        if (global)
-                        {
-                            WinINet.SetIEProxy(true, true, "127.0.0.1:" + config.localPort.ToString(), "");
-                        }
-                        else
-                        {
-                            string pacUrl;
-                            pacUrl = $"http://127.0.0.1:{config.localPort}/pac?auth={config.localAuthPassword}&t={Util.Utils.GetTimestamp(DateTime.Now)}";
-                            WinINet.SetIEProxy(true, false, "", pacUrl);
-                        }
-                    }
-                    else
-                    {
-                        WinINet.SetIEProxy(false, false, "", "");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logging.LogUsefulException(ex);
-                }
-            }
+            //            if (Environment.OSVersion.Version.CompareTo(win8) >= 0)
+            //            {
+            //                try
+            //                {
+            //                    if (enabled)
+            //                    {
+            //                        if (global)
+            //                        {
+            //                            WinINet.SetIEProxy(true, true, "127.0.0.1:" + config.localPort.ToString(), "");
+            //                        }
+            //                        else
+            //                        {
+            //                            string pacUrl;
+            //                            // pacUrl = $"http://127.0.0.1:{config.localPort}/pac?auth={config.localAuthPassword}&t={Util.Utils.GetTimestamp(DateTime.Now)}";
+            //                            pacUrl = $"http://127.0.0.1:{config.localPort}/pac?auth={config.localAuthPassword}";
+            //                            WinINet.SetIEProxy(true, false, "", pacUrl);
+            //                        }
+            //                    }
+            //                    else
+            //                    {
+            //                        WinINet.SetIEProxy(false, false, "", "");
+            //                    }
+            //                }
+            //                catch (Exception ex)
+            //                {
+            //                    Logging.LogUsefulException(ex);
+            //                }
+            //            }
         }
 
         private static void CopyProxySettingFromLan()
@@ -612,7 +613,7 @@ namespace Shadowsocks.Controller
                         {
                             case "DEFAULTCONNECTIONSETTINGS":
                             case "SAVEDLEGACYSETTINGS":
-                            //case "LAN CONNECTION":
+                                //case "LAN CONNECTION":
                                 continue;
                             default:
                                 //set all the connections's proxy as the lan
@@ -663,7 +664,7 @@ namespace Shadowsocks.Controller
             BytePushback(buffer, ref buffer_len, bypass);
 
             string pacUrl = "";
-            pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword + "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
+            pacUrl = "http://127.0.0.1:" + config.localPort.ToString() + "/pac?" + "auth=" + config.localAuthPassword; //+ "&t=" + Util.Utils.GetTimestamp(DateTime.Now);
             BytePushback(buffer, ref buffer_len, pacUrl);
 
             buffer_len += 0x20;
