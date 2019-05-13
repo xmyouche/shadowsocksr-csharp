@@ -961,7 +961,7 @@ namespace Shadowsocks.View
             ShowSettingForm();
         }
 
-        private void Quit_Click(object sender, EventArgs e)
+        public void Quit_Click(object sender, EventArgs e)
         {
             controller.Stop();
             if (configForm != null)
