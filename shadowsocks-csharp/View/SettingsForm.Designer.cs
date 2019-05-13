@@ -122,8 +122,8 @@
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.chkLogEnable, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.lblLogging, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.lblBalance, 0, 3);
@@ -143,17 +143,17 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(250, 127);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(245, 127);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // chkLogEnable
             // 
             this.chkLogEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkLogEnable.AutoSize = true;
-            this.chkLogEnable.Location = new System.Drawing.Point(103, 111);
+            this.chkLogEnable.Location = new System.Drawing.Point(56, 111);
             this.chkLogEnable.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkLogEnable.Name = "chkLogEnable";
-            this.chkLogEnable.Size = new System.Drawing.Size(144, 16);
+            this.chkLogEnable.Size = new System.Drawing.Size(186, 16);
             this.chkLogEnable.TabIndex = 18;
             this.chkLogEnable.Text = "Enable Log";
             this.chkLogEnable.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
             // 
             this.lblLogging.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblLogging.AutoSize = true;
-            this.lblLogging.Location = new System.Drawing.Point(50, 112);
+            this.lblLogging.Location = new System.Drawing.Point(3, 112);
             this.lblLogging.Margin = new System.Windows.Forms.Padding(3, 0, 3, 1);
             this.lblLogging.Name = "lblLogging";
             this.lblLogging.Size = new System.Drawing.Size(47, 12);
@@ -174,7 +174,7 @@
             // 
             this.lblBalance.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblBalance.AutoSize = true;
-            this.lblBalance.Location = new System.Drawing.Point(50, 56);
+            this.lblBalance.Location = new System.Drawing.Point(3, 56);
             this.lblBalance.Margin = new System.Windows.Forms.Padding(3, 3, 3, 6);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(47, 12);
@@ -195,20 +195,20 @@
             "LowException",
             "SelectedFirst",
             "Timer"});
-            this.cmbBalance.Location = new System.Drawing.Point(103, 51);
+            this.cmbBalance.Location = new System.Drawing.Point(56, 51);
             this.cmbBalance.Margin = new System.Windows.Forms.Padding(3, 3, 3, 8);
             this.cmbBalance.Name = "cmbBalance";
-            this.cmbBalance.Size = new System.Drawing.Size(144, 20);
+            this.cmbBalance.Size = new System.Drawing.Size(186, 20);
             this.cmbBalance.TabIndex = 14;
             // 
             // chkAutoBan
             // 
             this.chkAutoBan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkAutoBan.AutoSize = true;
-            this.chkAutoBan.Location = new System.Drawing.Point(103, 95);
+            this.chkAutoBan.Location = new System.Drawing.Point(56, 95);
             this.chkAutoBan.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkAutoBan.Name = "chkAutoBan";
-            this.chkAutoBan.Size = new System.Drawing.Size(144, 16);
+            this.chkAutoBan.Size = new System.Drawing.Size(186, 16);
             this.chkAutoBan.TabIndex = 15;
             this.chkAutoBan.Text = "AutoBan";
             this.chkAutoBan.UseVisualStyleBackColor = true;
@@ -217,10 +217,10 @@
             // 
             this.chkBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkBalance.AutoSize = true;
-            this.chkBalance.Location = new System.Drawing.Point(103, 32);
+            this.chkBalance.Location = new System.Drawing.Point(56, 32);
             this.chkBalance.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkBalance.Name = "chkBalance";
-            this.chkBalance.Size = new System.Drawing.Size(144, 16);
+            this.chkBalance.Size = new System.Drawing.Size(186, 16);
             this.chkBalance.TabIndex = 13;
             this.chkBalance.Text = "Load balance";
             this.chkBalance.UseVisualStyleBackColor = true;
@@ -229,10 +229,10 @@
             // 
             this.chkAutoStartup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkAutoStartup.AutoSize = true;
-            this.chkAutoStartup.Location = new System.Drawing.Point(103, 0);
+            this.chkAutoStartup.Location = new System.Drawing.Point(56, 0);
             this.chkAutoStartup.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkAutoStartup.Name = "chkAutoStartup";
-            this.chkAutoStartup.Size = new System.Drawing.Size(144, 16);
+            this.chkAutoStartup.Size = new System.Drawing.Size(186, 16);
             this.chkAutoStartup.TabIndex = 12;
             this.chkAutoStartup.Text = "Start on Boot";
             this.chkAutoStartup.UseVisualStyleBackColor = true;
@@ -241,10 +241,10 @@
             // 
             this.chkBalanceInGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkBalanceInGroup.AutoSize = true;
-            this.chkBalanceInGroup.Location = new System.Drawing.Point(103, 79);
+            this.chkBalanceInGroup.Location = new System.Drawing.Point(56, 79);
             this.chkBalanceInGroup.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkBalanceInGroup.Name = "chkBalanceInGroup";
-            this.chkBalanceInGroup.Size = new System.Drawing.Size(144, 16);
+            this.chkBalanceInGroup.Size = new System.Drawing.Size(186, 16);
             this.chkBalanceInGroup.TabIndex = 15;
             this.chkBalanceInGroup.Text = "Balance in group";
             this.chkBalanceInGroup.UseVisualStyleBackColor = true;
@@ -253,10 +253,10 @@
             // 
             this.chkSwitchAutoCloseAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkSwitchAutoCloseAll.AutoSize = true;
-            this.chkSwitchAutoCloseAll.Location = new System.Drawing.Point(103, 16);
+            this.chkSwitchAutoCloseAll.Location = new System.Drawing.Point(56, 16);
             this.chkSwitchAutoCloseAll.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.chkSwitchAutoCloseAll.Name = "chkSwitchAutoCloseAll";
-            this.chkSwitchAutoCloseAll.Size = new System.Drawing.Size(144, 16);
+            this.chkSwitchAutoCloseAll.Size = new System.Drawing.Size(186, 16);
             this.chkSwitchAutoCloseAll.TabIndex = 16;
             this.chkSwitchAutoCloseAll.Text = "Switch auto close TCP links";
             this.chkSwitchAutoCloseAll.UseVisualStyleBackColor = true;
