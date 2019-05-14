@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using System.Reflection;
 using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
@@ -217,7 +218,80 @@ namespace Shadowsocks.View
                     + "\r\n"
                     + String.Format(I18N.GetString("Running: Port {0}"), config.localPort)  // this feedback is very important because they need to know Shadowsocks is running
                     ;
-            _notifyIcon.Text = text.Substring(0, Math.Min(63, text.Length));
+
+            // if we on newer than Windows 2000 , we can extend notify icon title limit to 127 characters by Reflection it
+            // https://stackoverflow.com/questions/579665/how-can-i-show-a-systray-tooltip-longer-than-63-chars
+            bool extendOk = false;
+            try
+            {
+                Version win2000 = new Version("5.0");   // http://www.vb-helper.com/howto_net_os_version.html
+                if (Environment.OSVersion.Version.CompareTo(win2000) > 0)
+                {
+                    if (config.random)
+                    {
+                        text = text
+                               + "\r\n"
+                               + String.Format(I18N.GetString("Load balance") + ":" + I18N.GetString(config.balanceAlgorithm))
+                            ;
+                        if (config.randomInGroup)
+                        {
+                            text = text
+                                   + "["
+                                   + String.Format(I18N.GetString("Balance in group"))
+                                   + "]"
+                                ;
+                        }
+                        if (config.autoBan)
+                        {
+                            text = text
+                                   + "$"
+                                   + String.Format(I18N.GetString("AutoBan"))
+                                   + "$"
+                                ;
+                        }
+                    }
+                    else
+                    {
+                        if (config.index >= 0 && config.index < config.configs.Count)
+                        {
+                            var selServer = config.configs[config.index];
+                            text = text
+                                   + "\r\n"
+                                   + selServer.FriendlyName()
+                                ;
+                            if (!String.IsNullOrEmpty(selServer.group) || !String.IsNullOrEmpty(selServer.remarks))
+                            {
+                                text = text + "\r\n";
+                                if (!String.IsNullOrEmpty(selServer.group))
+                                {
+                                    text = text + selServer.group;
+                                }
+                                text = text + ":";
+                                if (!String.IsNullOrEmpty(selServer.remarks))
+                                {
+                                    text = text + selServer.remarks;
+                                }
+                            }
+                        }
+                    }
+                    if (text.Length > 127)
+                    {
+                        String suffix = "...";
+                        text = text.Substring(0, Math.Min(127 - suffix.Length, text.Length)) + suffix;
+                    }
+                    FixesNotifyIcon.SetNotifyIconText(_notifyIcon, text);
+                    extendOk = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.LogUsefulException(e);
+                extendOk = false;
+            }
+            if (!extendOk)
+            {
+                _notifyIcon.Text = text.Substring(0, Math.Min(63, text.Length));
+            }
         }
 
         private MenuItem CreateMenuItem(string text, EventHandler click)
@@ -1483,4 +1557,20 @@ namespace Shadowsocks.View
             showURLFromQRCode();
         }
     }
+
+
+    // https://stackoverflow.com/questions/579665/how-can-i-show-a-systray-tooltip-longer-than-63-chars
+    public class FixesNotifyIcon
+    {
+        public static void SetNotifyIconText(NotifyIcon ni, string text)
+        {
+            if (text.Length >= 128) throw new ArgumentOutOfRangeException("Text limited to 127 characters");
+            Type t = typeof(NotifyIcon);
+            BindingFlags hidden = BindingFlags.NonPublic | BindingFlags.Instance;
+            t.GetField("text", hidden).SetValue(ni, text);
+            if ((bool)t.GetField("added", hidden).GetValue(ni))
+                t.GetMethod("UpdateIcon", hidden).Invoke(ni, new object[] { true });
+        }
+    }
+
 }
